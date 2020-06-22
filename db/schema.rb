@@ -12,9 +12,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_621_171_708) do
+ActiveRecord::Schema.define(version: 20_200_622_043_246) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
+
+  create_table 'countries', force: :cascade do |t|
+    t.string 'name', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['name'], name: 'index_countries_on_name'
+  end
+
+  create_table 'film_countries', force: :cascade do |t|
+    t.bigint 'film_id', null: false
+    t.bigint 'country_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['country_id'], name: 'index_film_countries_on_country_id'
+    t.index ['film_id'], name: 'index_film_countries_on_film_id'
+  end
+
+  create_table 'film_genres', force: :cascade do |t|
+    t.bigint 'film_id', null: false
+    t.bigint 'genre_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['film_id'], name: 'index_film_genres_on_film_id'
+    t.index ['genre_id'], name: 'index_film_genres_on_genre_id'
+  end
 
   create_table 'films', force: :cascade do |t|
     t.string 'name', null: false
@@ -30,4 +55,16 @@ ActiveRecord::Schema.define(version: 20_200_621_171_708) do
     t.index ['rating'], name: 'index_films_on_rating'
     t.index ['year'], name: 'index_films_on_year'
   end
+
+  create_table 'genres', force: :cascade do |t|
+    t.string 'name', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['name'], name: 'index_genres_on_name'
+  end
+
+  add_foreign_key 'film_countries', 'countries'
+  add_foreign_key 'film_countries', 'films'
+  add_foreign_key 'film_genres', 'films'
+  add_foreign_key 'film_genres', 'genres'
 end
