@@ -38,10 +38,59 @@ The following information should be available about the film:
 The following features must be present in the API:
 
   - Making a film
+
+    *example with "cURL"*
+
+    ```
+    curl --location --request POST 'http://localhost:3000/films' \
+    --form 'film[rating]=1' \
+    --form 'film[image]=http://example.com/name' \
+    --form 'film[name_local]=Name Local' \
+    --form 'film[description]=Description' \
+    --form 'film[name]=Name' \
+    --form 'film[year]=2001' \
+    --form 'film[countries_attributes[][name]]=Country 1' \
+    --form 'film[countries_attributes[][name]]=Country 2' \
+    --form 'film[genres_attributes[][name]]=Genre 1' \
+    --form 'film[genres_attributes[][name]]=Genre 2'
+    ```
+
   - Film editing
-  - Delete film
+    
+    *example with "cURL"*
+
+    ```
+    curl --location --request PATCH 'http://localhost:3000/films/1' \
+    --form 'film[rating]=10' \
+    --form 'film[image]=http://example.com/name_changed' \
+    --form 'film[name_local]=Name Local Changed' \
+    --form 'film[description]=Description Changed' \
+    --form 'film[name]=Name Changed' \
+    --form 'film[year]=2010' \
+    --form 'film[countries_attributes[][name]]=Country Changed' \
+    --form 'film[countries_attributes[][name]]=Country 2' \
+    --form 'film[genres_attributes[][name]]=Genre Changed' \
+    --form 'film[genres_attributes[][name]]=Genre 2'
+    ```
+
   - Obtaining detailed information about the film
+
+    *example with "cURL"*
+
+    `curl --location --request GET 'http://localhost:3000/films/1'`
+
   - Getting a list of films
+
+    *example with "cURL"*
+
+    `curl --location --request GET 'http://localhost:3000/films'`
+
+  - Delete film
+
+    *example with "cURL"*
+
+    `curl --location --request DELETE 'http://localhost:3000/films/1'`
+
 
 [Up](#to_lift)
 
@@ -50,7 +99,17 @@ The following features must be present in the API:
 Provide the ability to sort movies by one of the following fields:
 
   - Year of issue
+    
+    *example with "cURL"*
+
+    `curl --location --request GET 'http://localhost:3000/films?sort_by=year&sort_order=desc'`
+  
   - Rating
+    
+    *example with "cURL"*
+
+    `curl --location --request GET 'http://localhost:3000/films?sort_by=rating&sort_order=asc'`
+  
 
 [Up](#to_lift)
 
@@ -59,11 +118,35 @@ Provide the ability to sort movies by one of the following fields:
 Provide the ability to filter movies by the following fields:
 
   - Name
-  - Year of issue
-  - Country of Origin
-  - Rating
-  - List of genres
+    
+    *example with "cURL"*
 
+    `curl --location --request GET 'http://localhost:3000/films?name=Name_1'`
+  
+  - Year of issue
+    
+    *example with "cURL"*
+
+    `curl --location --request GET 'http://localhost:3000/films?year=2001'`
+  
+  - Country of Origin
+    
+    *example with "cURL"*
+
+    `curl --location --request GET 'http://localhost:3000/films?countries=Country_1,country_2'`
+  
+  - Rating
+    
+    *example with "cURL"*
+
+    `curl --location --request GET 'http://localhost:3000/films?rating=1'`
+  
+  - List of genres
+    
+    *example with "cURL"*
+
+    `curl --location --request GET 'http://localhost:3000/films?genres=Genre_1,genre_2'`
+  
 [Up](#to_lift)
 
 <a name="use"><h4>How to use</h4></a>
