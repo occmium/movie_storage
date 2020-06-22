@@ -11,7 +11,7 @@ class Film < ApplicationRecord
 
   validates :name, :name_local, :countries, :genres, presence: true
   validates :image, url: true, allow_blank: true
-  #todo validates :description # The contents of the audit must be agreed with the customer
+  # TODO: validates :description # The contents of the audit must be agreed with the customer
   validates :year, length: { is: 4 }
   validates :rating, inclusion: { in: (0..10) }
   validates :rating, :year, numericality: { only_integer: true }

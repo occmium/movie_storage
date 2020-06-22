@@ -1,8 +1,21 @@
 # frozen_string_literal: true
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+10.times do |number|
+  film = Film.new(
+    name: "Name_#{number + 1}",
+    name_local: "Name_local_#{number + 1}",
+    rating: 10 - number,
+    year: "200#{number}",
+    image: "https://example.com/#{number + 1}",
+    description: 'some word ' * (number + 1)
+  )
+  film.countries.build(name: "Country_#{number + 1}")
+  film.genres.build(name: "Genre_#{number + 1}")
+
+  if number == 0
+    film.countries.build(name: "Country_#{number + 10}")
+    film.genres.build(name: "Genre_#{number + 10}")
+  end
+
+  film.save!
+end

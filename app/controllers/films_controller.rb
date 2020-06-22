@@ -4,7 +4,7 @@ class FilmsController < ApplicationController
   before_action :set_film, only: %i[show update destroy]
 
   def index
-    @films = Film.all
+    @films = FilmQueryService.call(params)
 
     render json: FilmSerializer.new(@films).call
   end
