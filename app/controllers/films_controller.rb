@@ -49,8 +49,8 @@ class FilmsController < ApplicationController
       :year,
       :image,
       :description,
-      countries_attributes: %i[id name _destroy],
-      genres_attributes: %i[id name _destroy]
+      countries_attributes: %i[name],
+      genres_attributes: %i[name]
     )
   end
 end

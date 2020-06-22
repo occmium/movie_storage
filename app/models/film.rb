@@ -15,4 +15,17 @@ class Film < ApplicationRecord
   validates :year, length: { is: 4 }
   validates :rating, inclusion: { in: (0..10) }
   validates :rating, :year, numericality: { only_integer: true }
+
+  before_save :set_countries
+  before_save :set_genres
+
+  private
+
+  def set_countries
+    self.countries = countries.select(&:new_record?).map { |country| Country.find_or_initialize_by(name: country.name) }.uniq
+  end
+
+  def set_genres
+    self.genres = genres.select(&:new_record?).map { |genre| Genre.find_or_initialize_by(name: genre.name) }.uniq
+  end
 end
