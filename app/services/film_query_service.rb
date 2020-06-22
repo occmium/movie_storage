@@ -16,6 +16,8 @@ class FilmQueryService
     filter_by_country
     filter_by_genre
     filter_by_name
+    filter_by_rating
+    filter_by_year
     order_by
 
     scope
@@ -52,6 +54,24 @@ class FilmQueryService
           %w[name name_local].map { |field| "lower(#{field}) LIKE lower(:query)" }.join(' OR '),
           query: "%#{params[:name]}%"
         )
+      else
+        @scope
+      end
+  end
+
+  def filter_by_rating
+    @scope =
+      if params[:rating].present?
+        @scope.where('(rating) IN (?)', params[:rating])
+      else
+        @scope
+      end
+  end
+
+  def filter_by_year
+    @scope =
+      if params[:year].present?
+        @scope.where('(year) IN (?)', params[:year])
       else
         @scope
       end
