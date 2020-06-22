@@ -1,4 +1,4 @@
-<a name="to_lift"><h2>REST API "Films"</h2></a>
+<a name="to_lift"><h2>REST API "Movie storage"</h2></a>
 
 #### Test task. Ruby On Rails application.
 
@@ -73,11 +73,11 @@ following commands:
 
   + clone the program from the repository:
 
-    `git clone https://github.com/occmium/films_api.git`
+    `git clone https://github.com/occmium/movie_storage.git`
 
   + go to the program folder:
 
-    `cd films_api`
+    `cd movie_storage`
 
   + to install Bundler:
 

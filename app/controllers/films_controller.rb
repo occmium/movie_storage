@@ -6,18 +6,18 @@ class FilmsController < ApplicationController
   def index
     @films = Film.all
 
-    render json: @films
+    render json: FilmSerializer.new(@films).call
   end
 
   def show
-    render json: @film
+    render json: FilmSerializer.new(@film).call
   end
 
   def create
     @film = Film.new(film_params)
 
     if @film.save
-      render json: @film, status: :created, location: @film
+      render json: MinimalStringSerializer.new(@film).call, status: :ok
     else
       render json: @film.errors, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class FilmsController < ApplicationController
 
   def update
     if @film.update(film_params)
-      render json: @film
+      render json: MinimalStringSerializer.new(@film).call, status: :ok
     else
       render json: @film.errors, status: :unprocessable_entity
     end
