@@ -83,7 +83,7 @@ The following features must be present in the API:
 
     *example with "cURL"*
 
-    `curl --location --request GET 'http://localhost:3000/films'`
+    `curl --location --request GET 'http://localhost:3000/films?page=2'`
 
   - Delete film
 
@@ -102,7 +102,7 @@ Provide the ability to sort movies by one of the following fields:
     
     *example with "cURL"*
 
-    `curl --location --request GET 'http://localhost:3000/films?sort_by=year&sort_order=desc'`
+    `curl --location --request GET 'http://localhost:3000/films?sort_by=year&sort_order=desc&page=2'`
   
   - Rating
     

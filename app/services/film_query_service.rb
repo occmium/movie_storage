@@ -3,11 +3,11 @@
 class FilmQueryService
   attr_reader :params, :scope
 
-  def self.call(params, scope = Film.all.includes(:genres, :countries))
+  def self.call(params, scope = Film.page(params[:page]).includes(:genres, :countries))
     new(params, scope).call
   end
 
-  def initialize(params, scope = Film.all.includes(:genres, :countries))
+  def initialize(params, scope = Film.page(params[:page]).includes(:genres, :countries))
     @params = params
     @scope = scope
   end
