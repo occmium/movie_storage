@@ -51,7 +51,7 @@ class FilmQueryService
     @scope =
       if params[:name].present?
         @scope.where(
-          %w[name name_local].map { |field| "lower(#{field}) LIKE lower(:query)" }.join(' OR '),
+          %w[name name_local].map { |field| "similarity(#{field}, :query) > 0.3" }.join(' OR '),
           query: "%#{params[:name]}%"
         )
       else

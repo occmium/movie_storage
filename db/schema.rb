@@ -12,8 +12,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_622_043_246) do
+ActiveRecord::Schema.define(version: 20_200_623_062_012) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension 'pg_trgm'
   enable_extension 'plpgsql'
 
   create_table 'countries', force: :cascade do |t|

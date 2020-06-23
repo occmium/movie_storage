@@ -13,7 +13,7 @@
   film.countries.build(name: Faker::Address.country)
   film.genres.build(name: Faker::Book.genre)
 
-  if number == 0
+  if number.zero?
     film.countries.build(name: Faker::Address.country)
     film.genres.build(name: Faker::Book.genre)
   end

@@ -37,7 +37,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # This gem is a port of Perl's Data::Faker library that generates fake data
-  gem "faker", "~> 2.12"
+  gem 'faker', '~> 2.12'
 end
 
 group :development do
